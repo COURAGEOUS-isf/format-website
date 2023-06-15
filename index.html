@@ -11,21 +11,29 @@
             font-size: 21px;
         }
 
-        .header {
+        h1 {
             font-size: 150%;
             text-decoration: solid underline;
             text-align: center;
         }
 
-        .container>* {
-            border-bottom: dashed 0.5px gray;
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
         }
 
         .version-link>img {
             height: 1em;
         }
 
-        .draft-badge {}
+        .draft-badge {
+            font-size: 90%;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: rgb(200, 233, 227);
+        }
 
         .button {
             text-align: center;
@@ -36,6 +44,19 @@
             color: black;
             text-decoration: none;
             margin: 5px;
+            padding: 5px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo-subtitle {
+            display: block;
+            text-align: center;
+            color: rgb(36, 36, 36);
+            font-weight: 200;
         }
     </style>
     <script type="text/javascript" src="version-fetcher.js"></script>
@@ -43,9 +64,32 @@
 
 <body>
     <div style="width: 60%; margin: 0 auto;">
-        <h1 class="header">
-            Schema versions
-        </h1>
+        <img class="logo" src="logo.png" />
+        <h2 class="logo-subtitle">Data Format for the Belgian Trial</h2>
+
+        <h1>Introduction</h1>
+        <p>From the lessons learned in the first COURAGEOUS trial in Athens, a structured format has been chosen as
+            opposed to e.g. a table, as data scopes can vary. For instance, the version of the format is global to the
+            document, whereas the elevation of a point is specific to a single data point. Using a structured format
+            also allows easily extending it without breaking backwards compatibility.
+        </p>
+        <p>
+            <a href="https://www.json.org/json-en.html">JSON</a> has been
+            chosen due to its simplicity and amount of libraries available for writing and parsing data.
+        </p>
+
+        <h1>Format</h1>
+        <p>The format is specified in a <a href="https://json-schema.org/">JSON schema</a>. Files that use the
+            COURAGEOUS data format must successfully pass through the schema validation process. There are several
+            validators available online, including online ones. We recommend to use
+            <a href="https://www.jsonschemavalidator.net/">JSON Schema Validator</a> to check implementations of the
+            format as no download is required and it supports up to JSON Schema Draft 2019-09.
+        </p>
+
+        <h1>Schema Versions</h1>
+        <p>Versions of the format marked with "DRAFT" are not ready for usage and are only intended for review from
+            implementors.</p>
+        <div />
         <div class="container" id="content">
             Loading...
         </div>
