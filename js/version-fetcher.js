@@ -9,14 +9,20 @@ function onLoad() {
                 content += `<a class="version-link button" target="_blank" href="schemas/${version.name}.json"><img type="image/svg+xml" src="img/download-solid.svg"></img> Download</a>`
                 content += `<a class="version-link button" target="_blank" href="visualizer/?hideEditor&maxLevel=99&surl=../schemas/${version.name}.json"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Docs</a>`;
 
-                let changelog = await fetch(`schemas/changelogs/${version.name}.html`)
-                    .then(response => {
-                        if (response.status == 200) {
-                            return response.text();
-                        } else {
-                            return null;
-                        }
-                    })
+                let changelog;
+                try {
+                    const response = await fetch(`schemas/changelogs/${version.name}.html`);
+
+                    if (response.status === 200) {
+                        changelog = await response.text();
+                    } else {
+                        changelog = null;
+                    }
+                } catch (error) {
+                    console.error(error);
+                    changelog = null;
+                }
+
                 if (changelog !== null) {
                     content += `<button id="changelog-${version.name}-button" class="version-link button" href="#"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Changelog</button>`
                 }
