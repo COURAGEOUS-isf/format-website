@@ -1,0 +1,22 @@
+<ul>
+    <li>
+        Separate detection and tracking records as different types, for more flexibility on what either can contain.
+    </li>
+    <li>
+        Enforce the <span class="code">alarm</span> member on tracking records. Leaving it as null on tracking records
+        previously resulted in implementation defined behavior; This is no longer the case.
+    </li>
+    <li>
+        Make the <span class="code">location</span> member optional on detection records, as some C-UAS systems may
+        sometimes detect UAS systems and some of their details but not know their exact location.
+    </li>
+    <li>
+        Rename <span class="code">alarm_certainty</span> in <span class="code">alarm</span> members to <span
+            class="code">certainty</span>. This was an oversight on 0.3.0 and thus has been fixed.
+    </li>
+    <li>
+        Use <a href="https://serde.rs/enum-representations.html">externally tagged enum representation</a> for
+        <span class="code">location</span> members, which may be clearer in documentation and easier to work with in
+        some OOP languages.
+    </li>
+</ul>
