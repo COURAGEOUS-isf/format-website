@@ -15,8 +15,29 @@
             class="code">certainty</span>. This was an oversight on 0.3.0 and thus has been fixed.
     </li>
     <li>
-        Use <a href="https://serde.rs/enum-representations.html">externally tagged enum representation</a> for
-        <span class="code">location</span> members, which may be clearer in documentation and easier to work with in
-        some OOP languages.
+        Rename <span class="code">location</span> tag member from <span class="code">t</span> to <span
+            class="code">$type</span>, which is a bit more explicit on its meaning.
+    </li>
+    <li>
+        Use <a href="https://serde.rs/enum-representations.html">internally tagged enum representation</a> for
+        <span class="code">location</span> members, which effectively gets rid of the `c` member, flattening its
+        contents into the parent structure.
+        This means that what previously was represented as
+        <div class="code">
+            "t": "Position3d",<br />
+            "c": {<br />
+            "lat": 0.1234,<br />
+            "lon": 0.1234,<br />
+            "height_amsl": 0.1234<br />
+            }
+        </div>
+        Is now represented as
+        <div class="code">
+            "$type": "Position3d",<br />
+            "lat": 0.1234,<br />
+            "lon": 0.1234,<br />
+            "height_amsl": 0.1234
+        </div>
+        For more details, check the schema documentation.
     </li>
 </ul>
