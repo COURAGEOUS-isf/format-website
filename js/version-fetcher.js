@@ -1,5 +1,5 @@
 function onLoad() {
-    fetch("schemas/list.json")
+    fetch("schemas/list.json", { cache: "no-store" })
         .then((response) => response.json())
         .then(async (json) => {
             let content = "";
@@ -63,7 +63,7 @@ function onLoad() {
             }
         });
 
-    fetch("track2kml/list.json")
+    fetch("track2kml/list.json", { cache: "no-store" })
         .then((response) => response.json())
         .then(async (json) => {
             let content = "";
