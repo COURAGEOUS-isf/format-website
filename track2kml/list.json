@@ -1,26 +1,32 @@
 [
     {
         "name": "v2.3.1",
+        "date": "30/11/2023",
         "draft": false
     },
     {
         "name": "v2.3.0",
+        "date": "23/10/2023",
         "draft": false
     },
     {
         "name": "v2.2.0",
+        "date": "10/9/2023",
         "draft": false
     },
     {
         "name": "v2.1.1",
+        "date": "26/7/2023",
         "draft": false
     },
     {
         "name": "v2.1.0",
+        "date": "18/7/2023",
         "draft": false
     },
     {
         "name": "v2.0.2",
+        "date": "4/7/2023",
         "draft": false
     }
 ]

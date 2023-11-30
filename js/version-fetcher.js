@@ -30,6 +30,7 @@ function onLoad() {
                     content += `<span class="draft badge">DRAFT</span>`;
                 }
                 content += version.name;
+                content += `<span class="version-date">${version.date}</span>`;
                 content += "</div>";
                 if (changelog !== null) {
                     content += `<div id="changelog-${version.name}" style="display:none; padding-left:2em; border-left-color:black;border-left-width: 5px;border-left-style: dotted;"><h3>Changelog for ${version.name}:</h3>${changelog}`;
@@ -93,6 +94,7 @@ function onLoad() {
                     content += `<span class="draft-badge">DRAFT</span>`;
                 }
                 content += version.name;
+                content += `<span class="version-date">${version.date}</span>`;
                 content += "</div>";
                 if (changelog !== null) {
                     content += `<div id="changelog2-${version.name}" style="display:none;"><h3>Changelog for ${version.name}:</h3>${changelog}</div>`;
