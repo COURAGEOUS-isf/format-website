@@ -1,33 +1,42 @@
+async function loadFile(path) {
+    try {
+        const response = await fetch(path);
+
+        if (response.status === 200) {
+            return await response.text();
+        } else {
+            console.error("could not obtain file");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function onLoad() {
     fetch("schemas/list.json", { cache: "no-store" })
         .then((response) => response.json())
         .then(async (json) => {
             let content = "";
-            for (const version of json) {
+            for (const [idx, version] of json.entries()) {
                 content += `<div>`;
                 content += `<div style="white-space:nowrap;">`;
-                content += `<a class="version-link button" target="_blank" href="schemas/${version.name}.json"><img type="image/svg+xml" src="img/download-solid.svg"></img> Download</a>`
-                content += `<a class="version-link button" target="_blank" href="visualizer/?hideEditor&maxLevel=99&surl=../schemas/${version.name}.json"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Docs</a>`;
-
-                let changelog;
-                try {
-                    const response = await fetch(`schemas/changelogs/${version.name}.html`);
-
-                    if (response.status === 200) {
-                        changelog = await response.text();
-                    } else {
-                        changelog = null;
-                    }
-                } catch (error) {
-                    console.error(error);
-                    changelog = null;
+                content += `<a class="version-link button" target="_blank" href="schemas/${version.name}.json"><img type="image/svg+xml" src="img/download-solid.svg"></img> Schema</a>`
+                let docs_response = await fetch(`schemas/docs/${version.name}/index.html`)
+                if (docs_response.status == 200) {
+                    content += `<a class="version-link button" target="_blank" href="../schemas/docs/${version.name}/index.html"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Guide</a>`;
                 }
+                content += `<a class="version-link button" target="_blank" href="visualizer/?hideEditor&maxLevel=99&surl=../schemas/${version.name}.json"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Reference</a>`;
+
+                let changelog = await loadFile(`schemas/changelogs/${version.name}.html`);
 
                 if (changelog !== null) {
                     content += `<button id="changelog-${version.name}-button" class="version-link button" href="#"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Info</button>`
                 }
                 if (version.draft) {
                     content += `<span class="draft badge">DRAFT</span>`;
+                }
+                if (idx === 0) {
+                    content += `<span class="latest badge">LATEST</span>`;
                 }
                 content += version.name;
                 content += `<span class="version-date">${version.date}</span>`;
@@ -73,19 +82,7 @@ function onLoad() {
                 content += `<div style="white-space:nowrap;">`;
                 content += `<a class="version-link button" target="_blank" href="track2kml/${version.name}.zip"><img type="image/svg+xml" src="img/download-solid.svg"></img> Download</a>`
 
-                let changelog;
-                try {
-                    const response = await fetch(`track2kml/changelogs/${version.name}.html`);
-
-                    if (response.status === 200) {
-                        changelog = await response.text();
-                    } else {
-                        changelog = null;
-                    }
-                } catch (error) {
-                    console.error(error);
-                    changelog = null;
-                }
+                let changelog = await loadFile(`track2kml/changelogs/${version.name}.html`);
 
                 if (changelog !== null) {
                     content += `<button id="changelog2-${version.name}-button" class="version-link button" href="#"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Changelog</button>`
