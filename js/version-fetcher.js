@@ -25,7 +25,7 @@ function onLoad() {
                 if (docs_response.status == 200) {
                     content += `<a class="version-link button" target="_blank" href="../schemas/docs/${version.name}/index.html"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Guide</a>`;
                 }
-                content += `<a class="version-link button" target="_blank" href="visualizer/?hideEditor&maxLevel=99&surl=../schemas/${version.name}.json"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Reference</a>`;
+                content += `<a class="version-link button" target="_blank" href="visualizer/?hideEditor&maxLevel=3&surl=../schemas/${version.name}.json"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Reference</a>`;
 
                 let changelog = await loadFile(`schemas/changelogs/${version.name}.html`);
 
