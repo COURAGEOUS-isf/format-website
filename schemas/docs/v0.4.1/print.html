@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="basic_concepts/chapter_1.html"><strong aria-hidden="true">1.</strong> Basic Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_concepts/record_fields.html"><strong aria-hidden="true">1.1.</strong> Record organization</a></li><li class="chapter-item expanded "><a href="basic_concepts/detec_track.html"><strong aria-hidden="true">1.2.</strong> Tracking and detection</a></li><li class="chapter-item expanded "><a href="basic_concepts/class_ident.html"><strong aria-hidden="true">1.3.</strong> Classification and identification</a></li><li class="chapter-item expanded "><a href="basic_concepts/cuas_location.html"><strong aria-hidden="true">1.4.</strong> C-UAS Location</a></li></ol></li><li class="chapter-item expanded "><a href="common_uses/examples.html"><strong aria-hidden="true">2.</strong> Special cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="common_uses/intercepting.html"><strong aria-hidden="true">2.1.</strong> Intercepting C-UAS</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="basic_concepts/chapter_1.html"><strong aria-hidden="true">1.</strong> Basic Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_concepts/record_fields.html"><strong aria-hidden="true">1.1.</strong> Record organization</a></li><li class="chapter-item expanded "><a href="basic_concepts/detec_track.html"><strong aria-hidden="true">1.2.</strong> Tracking and detection</a></li><li class="chapter-item expanded "><a href="basic_concepts/class_ident.html"><strong aria-hidden="true">1.3.</strong> Classification and identification</a></li><li class="chapter-item expanded "><a href="basic_concepts/cuas_location.html"><strong aria-hidden="true">1.4.</strong> C-UAS Location</a></li></ol></li><li class="chapter-item expanded "><a href="common_uses/special_cases.html"><strong aria-hidden="true">2.</strong> Special cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="common_uses/basic_example.html"><strong aria-hidden="true">2.1.</strong> Basic example</a></li><li class="chapter-item expanded "><a href="common_uses/intercepting.html"><strong aria-hidden="true">2.2.</strong> Intercepting C-UAS</a></li></ol></li><li class="chapter-item expanded "><a href="track2kml/track2kml.html"><strong aria-hidden="true">3.</strong> Visualizing data</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -175,7 +175,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="basic-concepts"><a class="header" href="#basic-concepts">Basic concepts</a></h1>
-<p>This document acts as a supplement to the <a href="https://grvc.us.es/courageous/">schema</a>. 
+<p>This document acts as a supplement to the <a href="https://grvc.us.es/courageous/">schema</a>.
 As a result, it <strong><ins>should not be used as a reference but
 a guide<ins></strong>.</p>
 <p>The main procedure should be to:</p>
@@ -183,8 +183,8 @@ a guide<ins></strong>.</p>
 <li>Log data either in detection or tracks depending on the nature of the data.</li>
 <li>Organize and distinguish elements through record fields.</li>
 <li>Classify and identify objects.</li>
-<li>Fill in all fields that the system allows. 
-Leaving optional fields blank means the system is incapable 
+<li>Fill in all fields that the system allows.
+Leaving optional fields blank means the system is incapable
 of obtaining such information.</li>
 </ul>
 <p>This document will focus on explaining these concepts.</p>
@@ -198,20 +198,20 @@ and, when applicable, point in space.</p>
 These fields are used to identify and distinguish record sets within the format.</p>
 <ul>
 <li>
-<p><code>name</code> simply acts as free-form text to distinguish record sets. 
+<p><code>name</code> simply acts as free-form text to distinguish record sets.
 As it is an optional field, each company can use it to organize their data
 as they see fit.</p>
 </li>
 <li>
 <p><code>uas_id</code> is used to distinguish and correlate different record sets within the format.
-Unique sets of records should have unique values while record sets that refer to 
-the same UAS should have the same <code>uas_id</code>. In the case of tracks, this allows a method 
+Unique sets of records should have unique values while record sets that refer to
+the same UAS should have the same <code>uas_id</code>. In the case of tracks, this allows a method
 of logging the C-UAS losing the UAS momentarily, emulating a discontinuous track.</p>
 </li>
 </ul>
-<p>It is <strong>essential</strong> for <strong>C-UAS that intercept the UAS communication</strong> to view the 
+<p>It is <strong>essential</strong> for <strong>C-UAS that intercept the UAS communication</strong> to view the
 <a href="basic_concepts/../common_uses/intercepting.html">Intercepting C-UAS segment</a> to understand the
-UAV - GCS logging procedure. </p>
+UAV - GCS logging procedure.</p>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>Record sets refers to both track and detection set elements (inside <code>detection</code> and <code>tracks</code>).</p>
 </div>
@@ -220,22 +220,22 @@ UAV - GCS logging procedure. </p>
 Data inside <code>tracks</code> and <code>detection</code> is organized in record sets
 (called <em>tracks</em> and <em>detection sets</em>, respectively).</p>
 <h3 id="tracking"><a class="header" href="#tracking">Tracking</a></h3>
-<p><strong>Tracking</strong> is used for targets that the C-UAS has locked on and is 
+<p><strong>Tracking</strong> is used for targets that the C-UAS has locked on and is
 actively tracking their positions.
-These records should describe the trajectory of a specific target. </p>
+These records should describe the trajectory of a specific target.</p>
 <blockquote>
 <p>When the system locks on a target and starts to track its position, the system should
-log each continuous track as an element of <code>tracks</code>. 
+log each continuous track as an element of <code>tracks</code>.
 In the case of a target coming in and out of view, each continuous track should be logged
 separately under the same <code>uas_id</code>, as a way to link the tracks.</p>
 </blockquote>
 <h3 id="detection"><a class="header" href="#detection">Detection</a></h3>
-<p><strong>Detection</strong> is used for sporadic detections without a clear spatial or 
-temporal relation and thus can't be considered to be tracked. 
+<p><strong>Detection</strong> is used for sporadic detections without a clear spatial or
+temporal relation and thus can't be considered to be tracked.
 This does not include tracks that are momentarily lost and picked up later.<br />
 Targets aren't required to be identified to be part of a record, only detected.</p>
 <blockquote>
-<p>When these systems detect potential targets, the system should log each 
+<p>When these systems detect potential targets, the system should log each
 unique target as a <strong>different detection set</strong> (members of <code>detection</code>).
 In the case of entities not properly identified as a unique target, they should
 omit the <code>uas_id</code> parameter.</p>
@@ -243,7 +243,7 @@ omit the <code>uas_id</code> parameter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="classification-and-identification"><a class="header" href="#classification-and-identification">Classification and Identification</a></h2>
 <p>The format allows systems to classify and identify target records through the
 appropriately named fields <code>classification</code> and <code>identification</code>.
-The only required field is <code>classification</code> while <code>identification</code> 
+The only required field is <code>classification</code> while <code>identification</code>
 is used to complement the classification.</p>
 <p><strong>Classification</strong> refers to the basic category of the target detected.
 The available options are:</p>
@@ -253,10 +253,10 @@ The available options are:</p>
 <li><strong>GCS</strong> : Ground Control Station, the entity is the operator of another entity of the same <code>uas_id</code></li>
 <li><strong>Other</strong>: The entity doesn't fall in any of the previous categories, e.g. <em>bird</em>.</li>
 </ul>
-<p><strong>Identification</strong> refers to a more detailed description of the entity in question. 
+<p><strong>Identification</strong> refers to a more detailed description of the entity in question.
 This field is optional and is meant to act as a more thorough description of the entity than classification.
-As such, it is left free for the company to <em>include a description more in line with their 
-system's capabilities</em>, whether it's specific information on the target (operator’s ID, 
+As such, it is left free for the company to <em>include a description more in line with their
+system's capabilities</em>, whether it's specific information on the target (operator’s ID,
 ID of the drone, UAV model, etc) or a more robust classification than the one provided.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="c-uas-location"><a class="header" href="#c-uas-location">C-UAS Location</a></h2>
 <p>C-UAS systems are required to provide their position for the trials.
@@ -264,32 +264,140 @@ To accommodate for mobile and static systems, there are 2 methods of
 providing the C-UAS position.</p>
 <p><code>static_cuas_location</code> is used for denoting the position of a static
 system. This field is <strong>compulsory for all C-UAS</strong>, but mobile
-systems can rely on the <code>cuas_location</code> field inside all records for 
+systems can rely on the <code>cuas_location</code> field inside all records for
 a dynamic position that will override the value given on <code>static_cuas_location</code>.
-In such cases, <code>static_cuas_location</code> should include the first C-UAS 
+In such cases, <code>static_cuas_location</code> should include the first C-UAS
 position recorded.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="special-cases"><a class="header" href="#special-cases">Special cases</a></h1>
 <p>The format allows a wide range of systems to log information.</p>
 <p>As is expected, this diversity gives rise to a variety of structures
 depending on the system in question. As a result, some systems
 require extra effort when logging data.</p>
+<p>This chapter offers a set of examples intended to act as a reference
+for both the format and the results expected using  the track visualizer
+(track2kml).</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="basic-example"><a class="header" href="#basic-example">Basic example</a></h2>
+<p>Here are record examples extracted from the <a href="common_uses/../res/example_basic.json">basic COURAGEOUS example file</a>.</p>
+<p>Using BearingElevation:</p>
+<pre><code class="language-json">...
+{
+    "alarm": {
+        "active": true,
+        "certainty": 1
+    },
+    "classification": "Unknown",
+    "location": {
+        "$type": "BearingElevation",
+        "bearing": 43.563024999999996,
+        "elevation": 2.211875
+    },
+    "record_number": 4,
+    "time": 1696255068480
+},
+...
+</code></pre>
+<p>Using Position3d and including the <code>identification</code> and <code>velocity</code> optional fields:</p>
+<pre><code class="language-json">...
+{
+    "classification": "UAV",
+    "identification": "UAV description",
+    "alarm": {
+        "active": false,
+        "certainty": 0.55
+    },
+    "location": {
+        "$type": "Position3d",
+        "height_amsl": 47.15314324164956,
+        "lat": 51.158929232973726,
+        "lon": 2.7414165702140973
+    },
+    "record_number": 0,
+    "time": 1696421411207,
+    "velocity": {
+        "east": -2.14297,
+        "north": 1.69235,
+        "up": -0.86349
+    }
+},
+...
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="intercepting-c-uas"><a class="header" href="#intercepting-c-uas">Intercepting C-UAS</a></h2>
-<p>Systems that intercept the communication between GCS and UAV require a 
+<p>Systems that intercept the communication between GCS and UAV require a
 specific logging procedure.</p>
-<p><strong>Logging both the GCS and the UAV under the same detection set/track is an error
-and will make such data unusable</strong>.</p>
 <h3 id="1-uav-logging"><a class="header" href="#1-uav-logging">1. UAV logging</a></h3>
 <p>When a UAV is detected or tracked, the system should log the UAV position
 instances in the same record set<sup class="footnote-reference"><a href="#1">1</a></sup> under a unique <code>uas_id</code>.</p>
 <h3 id="2-gcs-logging"><a class="header" href="#2-gcs-logging">2. GCS logging</a></h3>
-<p>The GCS location must be logged under a different record set<sup class="footnote-reference"><a href="#1">1</a></sup>, but should
-contain the same <code>uas_id</code> as the UAV records, so as to link both.</p>
+<p>The GCS location can be logged either in the same record set<sup class="footnote-reference"><a href="#1">1</a></sup> or a different one with the same
+<code>uas_id</code>.</p>
 <h3 id="3-uav-home-location"><a class="header" href="#3-uav-home-location">3. UAV Home location</a></h3>
 <p>In the case of C-UAS systems that are capable of extracting the <strong>home location</strong> of the UAV,
 it should be included in the UAV record set<sup class="footnote-reference"><a href="#1">1</a></sup> using the <code>uav_home_location</code> member.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>This is set of records extracted from the <a href="common_uses/../res/example_intercepting.json">intercepting C-UAS COURAGEOUS format example</a>.</p>
+<pre><code class="language-json">...
+ {
+    "classification": "UAV",
+    "identification": "UAV Description",
+    "alarm": {
+        "active": true,
+        "certainty": 1
+    },
+    "location": {
+        "$type": "Position3d",
+        "height_amsl": 52.33707466137043,
+        "lat": 51.15836795030467,
+        "lon": 2.736868683313011
+    },
+    "record_number": 2,
+    "time": 1696421607569
+},
+{
+    "classification": "GCS",
+    "identification": "GCS Description",
+    "alarm": {
+        "active": true,
+        "certainty": 1
+    },
+    "location": {
+        "$type": "Position3d",
+        "height_amsl": 9,
+        "lat": 51.157409,
+        "lon": 2.740082
+    },
+    "record_number": 3,
+    "time": 1696421411207
+},
+...
+</code></pre>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>detection set or track (members of <code>detection</code>or <code>tracks</code>, respectively).</p>
 </div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="visualizing-data"><a class="header" href="#visualizing-data">Visualizing data</a></h1>
+<p>Data in the COURAGEOUS format can be visualized using Google Earth Pro
+using <a href="https://grvc.us.es/courageous/">track2kml</a>.</p>
+<p><strong>track2kml</strong> is a commandline application that converts COURAGEOUS JSON files
+into KML.</p>
+<p>More information on track2kml can be found writing <code>track2kml --help</code>.</p>
+<p>Executing track2kml on any of the following examples:</p>
+<ul>
+<li><a href="track2kml/../res/example_basic.json">basic COURAGEOUS example</a></li>
+<li><a href="track2kml/../res/example_intercepting.json">intercepting C-UAS COURAGEOUS format example</a></li>
+<li><a href="track2kml/../res/test_data.json">additional example</a></li>
+</ul>
+<p>Gives the following KML files (On version 0.4.2):</p>
+<ul>
+<li><a href="track2kml/../res/example_basic.kml">basic COURAGEOUS example kml</a></li>
+<li><a href="track2kml/../res/example_intercepting.kml">intercepting C-UAS COURAGEOUS format example kml</a></li>
+<li><a href="track2kml/../res/test_data.kml">additional example kml</a></li>
+</ul>
+<p>Which when viewed on Google Earth appears as such:</p>
+<p><img src="track2kml/../res/track_1.png" alt="alt text" />
+Basic example</p>
+<p><img src="track2kml/../res/track_gcs.png" alt="alt text" />
+Intercepting C-UAS example</p>
+<p><img src="track2kml/../res/ge_file_window.png" alt="alt text" /></p>
+<p>KML file organization on Google Earth.</p>
 
                     </main>
 

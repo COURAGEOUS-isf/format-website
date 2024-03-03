@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../basic_concepts/chapter_1.html"><strong aria-hidden="true">1.</strong> Basic Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/record_fields.html"><strong aria-hidden="true">1.1.</strong> Record organization</a></li><li class="chapter-item expanded "><a href="../basic_concepts/detec_track.html" class="active"><strong aria-hidden="true">1.2.</strong> Tracking and detection</a></li><li class="chapter-item expanded "><a href="../basic_concepts/class_ident.html"><strong aria-hidden="true">1.3.</strong> Classification and identification</a></li><li class="chapter-item expanded "><a href="../basic_concepts/cuas_location.html"><strong aria-hidden="true">1.4.</strong> C-UAS Location</a></li></ol></li><li class="chapter-item expanded "><a href="../common_uses/examples.html"><strong aria-hidden="true">2.</strong> Special cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../common_uses/intercepting.html"><strong aria-hidden="true">2.1.</strong> Intercepting C-UAS</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../basic_concepts/chapter_1.html"><strong aria-hidden="true">1.</strong> Basic Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/record_fields.html"><strong aria-hidden="true">1.1.</strong> Record organization</a></li><li class="chapter-item expanded "><a href="../basic_concepts/detec_track.html" class="active"><strong aria-hidden="true">1.2.</strong> Tracking and detection</a></li><li class="chapter-item expanded "><a href="../basic_concepts/class_ident.html"><strong aria-hidden="true">1.3.</strong> Classification and identification</a></li><li class="chapter-item expanded "><a href="../basic_concepts/cuas_location.html"><strong aria-hidden="true">1.4.</strong> C-UAS Location</a></li></ol></li><li class="chapter-item expanded "><a href="../common_uses/special_cases.html"><strong aria-hidden="true">2.</strong> Special cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../common_uses/basic_example.html"><strong aria-hidden="true">2.1.</strong> Basic example</a></li><li class="chapter-item expanded "><a href="../common_uses/intercepting.html"><strong aria-hidden="true">2.2.</strong> Intercepting C-UAS</a></li></ol></li><li class="chapter-item expanded "><a href="../track2kml/track2kml.html"><strong aria-hidden="true">3.</strong> Visualizing data</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -178,22 +178,22 @@
 Data inside <code>tracks</code> and <code>detection</code> is organized in record sets
 (called <em>tracks</em> and <em>detection sets</em>, respectively).</p>
 <h3 id="tracking"><a class="header" href="#tracking">Tracking</a></h3>
-<p><strong>Tracking</strong> is used for targets that the C-UAS has locked on and is 
+<p><strong>Tracking</strong> is used for targets that the C-UAS has locked on and is
 actively tracking their positions.
-These records should describe the trajectory of a specific target. </p>
+These records should describe the trajectory of a specific target.</p>
 <blockquote>
 <p>When the system locks on a target and starts to track its position, the system should
-log each continuous track as an element of <code>tracks</code>. 
+log each continuous track as an element of <code>tracks</code>.
 In the case of a target coming in and out of view, each continuous track should be logged
 separately under the same <code>uas_id</code>, as a way to link the tracks.</p>
 </blockquote>
 <h3 id="detection"><a class="header" href="#detection">Detection</a></h3>
-<p><strong>Detection</strong> is used for sporadic detections without a clear spatial or 
-temporal relation and thus can't be considered to be tracked. 
+<p><strong>Detection</strong> is used for sporadic detections without a clear spatial or
+temporal relation and thus can't be considered to be tracked.
 This does not include tracks that are momentarily lost and picked up later.<br />
 Targets aren't required to be identified to be part of a record, only detected.</p>
 <blockquote>
-<p>When these systems detect potential targets, the system should log each 
+<p>When these systems detect potential targets, the system should log each
 unique target as a <strong>different detection set</strong> (members of <code>detection</code>).
 In the case of entities not properly identified as a unique target, they should
 omit the <code>uas_id</code> parameter.</p>

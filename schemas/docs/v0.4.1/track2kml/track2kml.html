@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Intercepting C-UAS</title>
+        <title>Visualizing data</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../basic_concepts/chapter_1.html"><strong aria-hidden="true">1.</strong> Basic Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/record_fields.html"><strong aria-hidden="true">1.1.</strong> Record organization</a></li><li class="chapter-item expanded "><a href="../basic_concepts/detec_track.html"><strong aria-hidden="true">1.2.</strong> Tracking and detection</a></li><li class="chapter-item expanded "><a href="../basic_concepts/class_ident.html"><strong aria-hidden="true">1.3.</strong> Classification and identification</a></li><li class="chapter-item expanded "><a href="../basic_concepts/cuas_location.html"><strong aria-hidden="true">1.4.</strong> C-UAS Location</a></li></ol></li><li class="chapter-item expanded "><a href="../common_uses/special_cases.html"><strong aria-hidden="true">2.</strong> Special cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../common_uses/basic_example.html"><strong aria-hidden="true">2.1.</strong> Basic example</a></li><li class="chapter-item expanded "><a href="../common_uses/intercepting.html" class="active"><strong aria-hidden="true">2.2.</strong> Intercepting C-UAS</a></li></ol></li><li class="chapter-item expanded "><a href="../track2kml/track2kml.html"><strong aria-hidden="true">3.</strong> Visualizing data</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../basic_concepts/chapter_1.html"><strong aria-hidden="true">1.</strong> Basic Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_concepts/record_fields.html"><strong aria-hidden="true">1.1.</strong> Record organization</a></li><li class="chapter-item expanded "><a href="../basic_concepts/detec_track.html"><strong aria-hidden="true">1.2.</strong> Tracking and detection</a></li><li class="chapter-item expanded "><a href="../basic_concepts/class_ident.html"><strong aria-hidden="true">1.3.</strong> Classification and identification</a></li><li class="chapter-item expanded "><a href="../basic_concepts/cuas_location.html"><strong aria-hidden="true">1.4.</strong> C-UAS Location</a></li></ol></li><li class="chapter-item expanded "><a href="../common_uses/special_cases.html"><strong aria-hidden="true">2.</strong> Special cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../common_uses/basic_example.html"><strong aria-hidden="true">2.1.</strong> Basic example</a></li><li class="chapter-item expanded "><a href="../common_uses/intercepting.html"><strong aria-hidden="true">2.2.</strong> Intercepting C-UAS</a></li></ol></li><li class="chapter-item expanded "><a href="../track2kml/track2kml.html" class="active"><strong aria-hidden="true">3.</strong> Visualizing data</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -173,70 +173,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="intercepting-c-uas"><a class="header" href="#intercepting-c-uas">Intercepting C-UAS</a></h2>
-<p>Systems that intercept the communication between GCS and UAV require a
-specific logging procedure.</p>
-<h3 id="1-uav-logging"><a class="header" href="#1-uav-logging">1. UAV logging</a></h3>
-<p>When a UAV is detected or tracked, the system should log the UAV position
-instances in the same record set<sup class="footnote-reference"><a href="#1">1</a></sup> under a unique <code>uas_id</code>.</p>
-<h3 id="2-gcs-logging"><a class="header" href="#2-gcs-logging">2. GCS logging</a></h3>
-<p>The GCS location can be logged either in the same record set<sup class="footnote-reference"><a href="#1">1</a></sup> or a different one with the same
-<code>uas_id</code>.</p>
-<h3 id="3-uav-home-location"><a class="header" href="#3-uav-home-location">3. UAV Home location</a></h3>
-<p>In the case of C-UAS systems that are capable of extracting the <strong>home location</strong> of the UAV,
-it should be included in the UAV record set<sup class="footnote-reference"><a href="#1">1</a></sup> using the <code>uav_home_location</code> member.</p>
-<h3 id="example"><a class="header" href="#example">Example</a></h3>
-<p>This is set of records extracted from the <a href="../res/example_intercepting.json">intercepting C-UAS COURAGEOUS format example</a>.</p>
-<pre><code class="language-json">...
- {
-    "classification": "UAV",
-    "identification": "UAV Description",
-    "alarm": {
-        "active": true,
-        "certainty": 1
-    },
-    "location": {
-        "$type": "Position3d",
-        "height_amsl": 52.33707466137043,
-        "lat": 51.15836795030467,
-        "lon": 2.736868683313011
-    },
-    "record_number": 2,
-    "time": 1696421607569
-},
-{
-    "classification": "GCS",
-    "identification": "GCS Description",
-    "alarm": {
-        "active": true,
-        "certainty": 1
-    },
-    "location": {
-        "$type": "Position3d",
-        "height_amsl": 9,
-        "lat": 51.157409,
-        "lon": 2.740082
-    },
-    "record_number": 3,
-    "time": 1696421411207
-},
-...
-</code></pre>
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>detection set or track (members of <code>detection</code>or <code>tracks</code>, respectively).</p>
-</div>
+                        <h1 id="visualizing-data"><a class="header" href="#visualizing-data">Visualizing data</a></h1>
+<p>Data in the COURAGEOUS format can be visualized using Google Earth Pro
+using <a href="https://grvc.us.es/courageous/">track2kml</a>.</p>
+<p><strong>track2kml</strong> is a commandline application that converts COURAGEOUS JSON files
+into KML.</p>
+<p>More information on track2kml can be found writing <code>track2kml --help</code>.</p>
+<p>Executing track2kml on any of the following examples:</p>
+<ul>
+<li><a href="../res/example_basic.json">basic COURAGEOUS example</a></li>
+<li><a href="../res/example_intercepting.json">intercepting C-UAS COURAGEOUS format example</a></li>
+<li><a href="../res/test_data.json">additional example</a></li>
+</ul>
+<p>Gives the following KML files (On version 0.4.2):</p>
+<ul>
+<li><a href="../res/example_basic.kml">basic COURAGEOUS example kml</a></li>
+<li><a href="../res/example_intercepting.kml">intercepting C-UAS COURAGEOUS format example kml</a></li>
+<li><a href="../res/test_data.kml">additional example kml</a></li>
+</ul>
+<p>Which when viewed on Google Earth appears as such:</p>
+<p><img src="../res/track_1.png" alt="alt text" />
+Basic example</p>
+<p><img src="../res/track_gcs.png" alt="alt text" />
+Intercepting C-UAS example</p>
+<p><img src="../res/ge_file_window.png" alt="alt text" /></p>
+<p>KML file organization on Google Earth.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../common_uses/basic_example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../common_uses/intercepting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../track2kml/track2kml.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -244,13 +214,10 @@ it should be included in the UAV record set<sup class="footnote-reference"><a hr
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../common_uses/basic_example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../common_uses/intercepting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../track2kml/track2kml.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
