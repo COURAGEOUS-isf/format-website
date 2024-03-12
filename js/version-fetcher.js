@@ -23,7 +23,7 @@ function onLoad() {
                 content += `<a class="version-link button" target="_blank" href="schemas/${version.name}.json"><img type="image/svg+xml" src="img/download-solid.svg"></img> Schema</a>`
                 let docs_response = await fetch(`schemas/docs/${version.name}/index.html`)
                 if (docs_response.status == 200) {
-                    content += `<a class="version-link button" target="_blank" href="../schemas/docs/${version.name}/index.html"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Guide</a>`;
+                    content += `<a class="version-link button" target="_blank" href="schemas/docs/${version.name}/index.html"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Guide</a>`;
                 }
                 content += `<a class="version-link button" target="_blank" href="visualizer/?hideEditor&maxLevel=3&surl=../schemas/${version.name}.json"><img type="image/svg+xml" src="img/file-lines-solid.svg"></img> Reference</a>`;
 
